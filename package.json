@@ -1,0 +1,19 @@
+{
+  "name": "ra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "eslint-plugin-import": "^2.3.0"
+  }
+}
