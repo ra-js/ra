@@ -10,7 +10,7 @@ class Ra {
 
   // noinspection JSMethodCanBeStatic
   call(req, res) {
-    res.send('Hello world! ' + req.method);
+    res.json({'response':req.method});
   }
 
   addDefinition(reference) {
