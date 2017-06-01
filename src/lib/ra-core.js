@@ -14,13 +14,12 @@ class Ra {
 
     this.definitions = {};
     this.types = {};
-    this.config = () => {
-      const prefix = options.prefix || 'ra';
+    function config() {
       return {
-        prefix: prefix,
-        allowHeaderParam: options.allowHeaderParam || true,
+        prefix: (options !== undefined && options.prefix) ? options.prefix : 'ra',
       };
-    };
+    }
+    this.config = config();
 
   }
 
@@ -40,6 +39,7 @@ class Ra {
 
     methodName = methodName || req.params.method;
     const definition = this.definitions[methodName];
+
     definition.args.version = '1.0';
 
     return new Promise((resolve, reject) => {

@@ -37,6 +37,6 @@ app.all('/ra/method/:method', (req, res) => {
 
 app.listen(3000, () => {
   console.log('====================');
-  console.log('Starting app http://localhost:3000/ra/method/ra.version');
+  console.log('Starting app http://lvh.me:3000/ra/method/ra.version');
   console.log('====================');
 });
