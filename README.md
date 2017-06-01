@@ -4,4 +4,4 @@
 
 Run `npm install`
 
-&copy; Alexander Pokhodyun (Karbunkul) 2017
+&#169; Alexander Pokhodyun (Karbunkul) 2017

@@ -2,18 +2,16 @@
   "name": "ra",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Pokhodyun Alexander",
+  "license": "MIT",
   "devDependencies": {
+    "eslint-config-airbnb": "^15.0.1",
     "express": "^4.15.3",
     "nodemon": "^1.11.0"
-  },
-  "dependencies": {
-    "eslint-plugin-import": "^2.3.0"
   }
 }

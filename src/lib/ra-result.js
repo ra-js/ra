@@ -5,6 +5,13 @@
 
 class RaResult {
 
+  constructor(response) {
+    return {
+      response: response,
+      status: 'ok',
+    };
+  }
+
 }
 
 module.exports = RaResult;
