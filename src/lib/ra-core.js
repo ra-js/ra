@@ -23,7 +23,6 @@ class Ra {
 
   }
 
-  // noinspection JSMethodCanBeStatic
   call(req, res, methodName) {
 
     function checkInstanceTypes() {
@@ -40,8 +39,6 @@ class Ra {
     methodName = methodName || req.params.method;
     const definition = this.definitions[methodName];
 
-    definition.args.version = '1.0';
-
     return new Promise((resolve, reject) => {
       const response = definition.callback(definition.args);
       const result = new RaResult(response);
@@ -49,7 +46,6 @@ class Ra {
     });
   }
 
-  // noinspection JSMethodCanBeStatic
   addDefinition(reference) {
     const definition = new RaDefinition(reference);
     if (definition.valid) {

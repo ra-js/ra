@@ -11,10 +11,10 @@ const api = new ra();
 // ra.version
 api.addDefinition({
   name: 'ra.version',
-  callback: (args) => {
+  callback: () => {
     return {
       engine: `node ${process.version} (${process.arch})`,
-      version: `ra v${args.version}`,
+      version: 'ra v1.0',
     };
   },
 });

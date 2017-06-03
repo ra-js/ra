@@ -1,7 +1,7 @@
-# RESTful API
+# REST API
 
 ## Install dependencies
 
-Run `npm install`
+Run `npm install` or `yarn install`
 
-&#169; Alexander Pokhodyun (Karbunkul) 2017
+© Alexander Pokhodyun (Karbunkul) 2017
