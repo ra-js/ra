@@ -1,0 +1,14 @@
+{
+  "excludeFiles": [
+    ".git",
+    "node_modules"
+  ],
+  "lang": "en",
+  "fileExtensions": [
+    ".md"
+  ],
+  "dictionary": [
+    "karbunkul",
+    "Pokhodyun"
+  ]
+}
