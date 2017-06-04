@@ -75,7 +75,7 @@ class Ra {
 
   call(req, res, methodName) {
 
-    const prefix = `x-${this.config.prefix.replace('x-', '')}`;
+    const prefix = `x-${this.config.prefix.replace('x-', '')}-`;
     const types = this.types;
 
     function checkInstanceTypes() {
@@ -89,23 +89,23 @@ class Ra {
 
     function paramValues(definition) {
 
-      const values = [];
+      const values = {};
 
       const headers = req.headers;
-      const params = req.params;
+      const params = req.query;
 
       for (const name in definition.args) {
         const arg = definition.args[name];
-        arg.require = (arg.defaultValue !== undefined) ? false : true;
+        arg.require = (arg.defaultValue === undefined);
         const datatype = types[arg.dataType];
 
         if (arg.require) {
-          const value = headers[prefix+name] || params[name];
+          const value = headers[prefix + name] || params[name];
           if (value === undefined){
             return new RaError(403,
-              `Missing required argument "${name}"`);
+              `Missing required argument '${name}'`);
           }else{
-            values[name] = value;
+            values[name] = datatype.callback(value);
           }
         }
       }
@@ -123,11 +123,8 @@ class Ra {
     if (values instanceof RaError) {
       return Promise.resolve(new RaResult(values));
     }else {
-      return new Promise((resolve, reject) => {
-        const response = definition.callback(values);
-        const result = new RaResult(response);
-        resolve(result);
-      });
+      const response = definition.callback(values);
+      return Promise.resolve(new RaResult(response));
     }
 
   }

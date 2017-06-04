@@ -10,14 +10,20 @@ class RaResult {
 
     if (response instanceof RaError) {
       return {
-        status: 'fail',
+        data: {
+          status: 'fail',
+          code: response.code,
+          message: response.message,
+        },
         code: response.code,
-        message: response.message,
       };
     }else{
       return {
-        status: 'ok',
-        response: response,
+        data: {
+          status: 'ok',
+          response: response,
+        },
+        code: 200,
       };
     }
   }

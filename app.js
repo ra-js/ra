@@ -12,18 +12,18 @@ api.addDefinition({
   name: 'ra.test',
   args: {
     param: {
-      dataType: 'number',
+      dataType: 'float',
     },
   },
-  callback: () => {
-    return api.errorInstance(404, 'Page not found');
+  callback: (args) => {
+    return args;
   },
 });
 
 app.all('/ra/method/:method', (req, res) => {
 
   api.call(req, res).then((response) => {
-    res.json(response);
+    res.json(response.data, response.code);
   });
 
 });
