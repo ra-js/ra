@@ -8,17 +8,11 @@ const app = express();
 const ra = require('./src/index');
 const api = new ra();
 
-api.addDefinition({
-  name: 'ra.test',
-  args: {
-    param: {
-      dataType: 'float',
-    },
-  },
-  callback: (args) => {
-    return args;
-  },
-});
+const definitions = require('./definitions');
+const datatypes = require('./datatypes');
+
+api.addDefinition(definitions.raTest);
+api.addDatatype(datatypes.vkUser);
 
 app.all('/ra/method/:method', (req, res) => {
 
