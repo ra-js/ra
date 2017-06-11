@@ -93,6 +93,9 @@ class Ra {
 
       const headers = req.headers;
       const params = req.query;
+      const body = req.body;
+
+      console.log(req.query);
 
       for (const name in definition.args) {
         const arg = definition.args[name];
@@ -100,7 +103,7 @@ class Ra {
         const datatype = types[arg.dataType];
 
         if (arg.require) {
-          const value = headers[prefix + name] || params[name];
+          const value = headers[prefix + name] || body[name] ||  params[name];
           if (value === undefined){
             return new RaError(403,
               `Missing required argument '${name}'`);

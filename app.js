@@ -5,6 +5,8 @@
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
 const ra = require('./src/index');
 const api = new ra();
 
@@ -13,6 +15,11 @@ const datatypes = require('./datatypes');
 
 api.addDefinition(definitions.raTest);
 api.addDatatype(datatypes.vkUser);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 
 app.all('/ra/method/:method', (req, res) => {
 

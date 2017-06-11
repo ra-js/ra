@@ -12,6 +12,7 @@
   "author": "Pokhodyun Alexander",
   "license": "MIT",
   "devDependencies": {
+    "body-parser": "^1.17.2",
     "chai": "^4.0.1",
     "eslint-config-airbnb": "^15.0.1",
     "express": "^4.15.3",
