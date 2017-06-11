@@ -9,6 +9,9 @@ module.exports.raTest = {
     user: {
       dataType: 'vkUser',
     },
+    arg: {
+      dataType: 'number',
+    },
   },
   callback: (args) => {
     return args;

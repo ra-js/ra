@@ -123,8 +123,22 @@ class Ra {
     if (values instanceof RaError) {
       return Promise.resolve(new RaResult(values));
     }else {
-      const response = definition.callback(values);
-      return Promise.resolve(new RaResult(response));
+      return new Promise((resolve, reject) => {
+        Promise.all(Object.values(values)).then((resolveAll) => {
+          const params = Object.assign({}, Object.keys(values), resolveAll);
+
+          let index = 0;
+          for (var key in values) {
+            values[key] = resolveAll[index];
+            index++;
+          }
+
+          const response = definition.callback(values);
+          resolve(new RaResult(response));
+        })
+
+      });
+
     }
 
   }

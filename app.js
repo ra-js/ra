@@ -17,7 +17,7 @@ api.addDatatype(datatypes.vkUser);
 app.all('/ra/method/:method', (req, res) => {
 
   api.call(req, res).then((response) => {
-    res.json(response.data, response.code);
+    res.status(response.code).json(response.data);
   });
 
 });
