@@ -8,6 +8,8 @@ class RaResult {
 
   constructor(response) {
 
+    console.log(response);
+
     if (response instanceof RaError) {
       return {
         data: {
@@ -17,7 +19,8 @@ class RaResult {
         },
         code: response.code,
       };
-    }else{
+    }
+    else{
       return {
         data: {
           status: 'ok',

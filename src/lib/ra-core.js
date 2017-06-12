@@ -13,7 +13,6 @@ const RaException = require('./ra-exception');
 class Ra {
 
   constructor(options) {
-
     this.definitions = {};
     this.types = {};
 
@@ -25,8 +24,6 @@ class Ra {
     }
 
     this.config = config();
-
-    console.log(this.config);
 
     // ra.version
     this.addDefinition({
@@ -56,18 +53,26 @@ class Ra {
     });
 
     // types
-
     this.addDatatype({
       type: 'number',
       callback: (value) => {
-        return parseInt(value);
+        const intVal = parseInt(value);
+        return (intVal) ? intVal : false;
       },
     });
 
     this.addDatatype({
       type: 'float',
       callback: (value) => {
-        return parseFloat(value);
+        const floatVal = parseFloat(value);
+        return (floatVal) ? floatVal : false;
+      },
+    });
+
+    this.addDatatype({
+      type: 'string',
+      callback: (value) => {
+        return value;
       },
     });
 
@@ -94,8 +99,6 @@ class Ra {
       const headers = req.headers;
       const params = req.query;
       const body = req.body;
-
-      console.log(req.query);
 
       for (const name in definition.args) {
         const arg = definition.args[name];
@@ -137,11 +140,16 @@ class Ra {
           }
 
           const response = definition.callback(values);
-          resolve(new RaResult(response));
+
+          if (response instanceof Promise) {
+            response.then((callbackResolve) => {
+              resolve(new RaResult(callbackResolve));
+            });
+          }else {
+            resolve(new RaResult(response));
+          }
         })
-
       });
-
     }
 
   }
