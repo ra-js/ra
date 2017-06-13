@@ -105,14 +105,15 @@ class Ra {
         arg.require = (arg.defaultValue === undefined);
         const datatype = types[arg.dataType];
 
+        // TODO добавить проверку на значение по умолчанию
         if (arg.require) {
           const value = headers[prefix + name] || body[name] ||  params[name];
           if (value === undefined){
             return new RaError(403,
               `Missing required argument '${name}'`);
-          }else{
-            values[name] = datatype.callback(value);
           }
+        }else{
+          values[name] = datatype.callback(arg.defaultValue);
         }
       }
 
