@@ -102,18 +102,19 @@ class Ra {
 
       for (const name in definition.args) {
         const arg = definition.args[name];
-        arg.require = (arg.defaultValue === undefined);
         const datatype = types[arg.dataType];
+        const value = headers[prefix + name] || body[name] ||  params[name];
 
         // TODO добавить проверку на значение по умолчанию
-        if (arg.require) {
-          const value = headers[prefix + name] || body[name] ||  params[name];
-          if (value === undefined){
+        if (value !== undefined) {
+          values[name] = datatype.callback(value)
+        } else {
+          if (arg.defaultValue !== undefined) {
+            values[name] = datatype.callback(arg.defaultValue)
+          } else {
             return new RaError(403,
-              `Missing required argument '${name}'`);
+              `Missing required argument '${name}'`)
           }
-        }else{
-          values[name] = datatype.callback(arg.defaultValue);
         }
       }
 
