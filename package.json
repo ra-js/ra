@@ -1,5 +1,5 @@
 {
-  "name": "Emerap RA",
+  "name": "ra",
   "version": "0.9.5",
   "description": "Customizing Rest API builder",
   "main": "src/index.js",
