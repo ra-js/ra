@@ -1,4 +1,7 @@
-# REST API
+# Emerap RA
+
+## Synopsis 
+Customizing Rest API builder
 
 ## Install dependencies
 

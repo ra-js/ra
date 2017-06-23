@@ -1,15 +1,15 @@
 {
-  "name": "ra",
-  "version": "1.0.0",
-  "description": "",
+  "name": "Emerap RA",
+  "version": "0.9.5",
+  "description": "Customizing Rest API builder",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm run test && nodemon app.js",
+    "start": "npm run test && nodemon example/app.js",
     "speller": "yaspeller .",
     "test": "mocha --reporter spec src/tests"
   },
-  "keywords": [],
-  "author": "Pokhodyun Alexander",
+  "keywords": ["ra", "api", "nodejs", "rest", "tools"],
+  "author": "Pokhodyun Alexander <karbunkul@yortask.ru> (https://emerap.com)",
   "license": "MIT",
   "devDependencies": {
     "body-parser": "^1.17.2",

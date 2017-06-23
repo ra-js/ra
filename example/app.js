@@ -7,14 +7,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const ra = require('./src/index');
+const ra = require('../src/index');
 const api = new ra();
 
 const definitions = require('./definitions');
 const datatypes = require('./datatypes');
 
-api.addDefinition(definitions.raTest);
-api.addDatatype(datatypes.vkUser);
+api.definition(definitions.raTest);
+api.datatype(datatypes.vkUser);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

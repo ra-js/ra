@@ -26,7 +26,7 @@ class Ra {
     this.config = config();
 
     // ra.version
-    this.addDefinition({
+    this.definition({
       name: 'ra.version',
       callback: () => {
         return {
@@ -37,7 +37,7 @@ class Ra {
     });
 
     // ra.methods
-    this.addDefinition({
+    this.definition({
       name: 'ra.methods',
       callback: () => {
         return Object.keys(this.definitions);
@@ -45,7 +45,7 @@ class Ra {
     });
 
     // ra.datatypes
-    this.addDefinition({
+    this.definition({
       name: 'ra.datatypes',
       callback: () => {
         return Object.keys(this.types);
@@ -53,7 +53,7 @@ class Ra {
     });
 
     // types
-    this.addDatatype({
+    this.datatype({
       type: 'number',
       callback: (value) => {
         const intVal = parseInt(value);
@@ -61,7 +61,7 @@ class Ra {
       },
     });
 
-    this.addDatatype({
+    this.datatype({
       type: 'float',
       callback: (value) => {
         const floatVal = parseFloat(value);
@@ -69,7 +69,7 @@ class Ra {
       },
     });
 
-    this.addDatatype({
+    this.datatype({
       type: 'string',
       callback: (value) => {
         return value;
@@ -156,14 +156,14 @@ class Ra {
 
   }
 
-  addDefinition(reference) {
+  definition(reference) {
     const definition = new RaDefinition(reference);
     if (definition.valid) {
       this.definitions[definition.name] = definition;
     }
   }
 
-  addDatatype(reference) {
+  datatype(reference) {
     const datatype = new RaDatatype(reference);
     if (datatype.valid) {
       this.types[datatype.type] = datatype;

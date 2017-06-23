@@ -1,0 +1,12 @@
+.DS_Store
+node_modules
+.editorconfig
+.eslintrc
+.gitignore
+.npmignore
+.travis.yml
+.yaspellerrc
+example
+package-lock.json
+yarn.lock
+.idea
