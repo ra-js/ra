@@ -16,6 +16,25 @@ const datatypes = require('./datatypes');
 api.definition(definitions.raTest);
 api.datatype(datatypes.vkUser);
 
+api.datatype({
+  type: 'fooBar',
+  callback: (value) => {
+    return `foo bar ${value}`;
+  },
+});
+
+api.definition({
+  name: 'ra.fooBar',
+  args: {
+    user: {
+      dataType: 'fooBar',
+    },
+  },
+  callback: (args) => {
+    return Promise.resolve(args);
+  },
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,

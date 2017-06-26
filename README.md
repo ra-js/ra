@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ra-js/ra.svg?branch=master)](https://travis-ci.org/ra-js/ra)
 
-## Synopsis 
+## Synopsis
 Customizing Rest API builder
 
 [![NPM](https://nodei.co/npm/ra.png)](https://nodei.co/npm/ra)
@@ -67,7 +67,7 @@ const api = new ra();
 api.datatype({
   type: 'fooBar',
   callback: (value) => {
-    return `foo bar &{value}`;
+    return `foo bar ${value}`;
   }
 });
 

@@ -95,26 +95,24 @@ class Ra {
     function paramValues(definition) {
 
       const values = {};
-
       const headers = req.headers;
       const params = req.query;
-      const body = req.body;
+      const body = req.body || false;
 
       for (const name in definition.args) {
         const arg = definition.args[name];
         const datatype = types[arg.dataType];
-        const value = headers[prefix + name] || body[name] ||  params[name];
+        const value = headers[prefix + name] || body[name] || params[name];
 
-        // TODO добавить проверку на значение по умолчанию
         if (value !== undefined) {
-          values[name] = datatype.callback(value)
-        } else {
-          if (arg.defaultValue !== undefined) {
-            values[name] = datatype.callback(arg.defaultValue)
-          } else {
-            return new RaError(403,
-              `Missing required argument '${name}'`)
-          }
+          values[name] = datatype.callback(value);
+        }
+        else if (arg.defaultValue !== undefined) {
+          values[name] = datatype.callback(arg.defaultValue);
+        }
+        else {
+          return new RaError(403,
+              `Missing required argument '${name}'`);
         }
       }
 
@@ -130,13 +128,14 @@ class Ra {
 
     if (values instanceof RaError) {
       return Promise.resolve(new RaResult(values));
-    }else {
+    }
+    else {
       return new Promise((resolve, reject) => {
         Promise.all(Object.values(values)).then((resolveAll) => {
           const params = Object.assign({}, Object.keys(values), resolveAll);
 
           let index = 0;
-          for (var key in values) {
+          for (const key in values) {
             values[key] = resolveAll[index];
             index++;
           }
@@ -147,10 +146,11 @@ class Ra {
             response.then((callbackResolve) => {
               resolve(new RaResult(callbackResolve));
             });
-          }else {
+          }
+          else {
             resolve(new RaResult(response));
           }
-        })
+        });
       });
     }
 

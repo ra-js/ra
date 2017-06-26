@@ -7,7 +7,7 @@ module.exports.raTest = {
   args: {
     user: {
       dataType: 'vkUser',
-      defaultValue: 'durov',
+      // defaultValue: 'durov',
     },
   },
   callback: (args) => {
